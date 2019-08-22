@@ -3,8 +3,8 @@ import util
 
 
 def main():
-    times = 10
-    size = 10 ** 3
+    times = 100000
+    size = 10 ** 4
 
     selection_data = {'time': [], 'compare': [], 'exchange': []}
     insertion_data = {'time': [], 'compare': [], 'exchange': []}
@@ -49,6 +49,8 @@ def main():
         insertion_arr = selection_arr[:]
         shell_arr = insertion_arr[:]
 
+    data = []
+
     #  data of selection sort
     f_selection_data = {'algorithm': 'Selection Sort', 'type': 'R', 'size': size,
                         'md_exchange': util.get_average(selection_data['exchange']),
@@ -58,6 +60,7 @@ def main():
                         'md_time': util.get_average(selection_data['time']),
                         'sd_time': util.get_std(selection_data['time'])}
 
+    data.append(f_selection_data)
     util.log(f_selection_data)
 
     #  data of insertion sort
@@ -69,6 +72,7 @@ def main():
                         'md_time': util.get_average(insertion_data['time']),
                         'sd_time': util.get_std(insertion_data['time'])}
 
+    data.append(f_insertion_data)
     util.log(f_insertion_data)
 
     # data of shell sort
@@ -80,7 +84,10 @@ def main():
                     'md_time': util.get_average(shell_data['time']),
                     'sd_time': util.get_std(shell_data['time'])}
 
+    data.append(f_shell_data)
     util.log(f_shell_data)
+
+    util.show_and_save_data(data)
 
 
 main()
