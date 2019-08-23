@@ -1,0 +1,5 @@
+,algorithm,type,size,md_exchange,md_compare,md_time
+0,Selection Sort,R,100,100.0,4950.0,0.0015625
+1,Insertion Sort,R,100,2538.1,2538.1,0.0
+2,Binary Insertion Sort,R,100,99.0,448.9,0.0
+3,Shell Sort,R,100,430.9,430.9,0.0

@@ -1,3 +1,6 @@
+import math
+
+
 def shell_sort(arr: list) -> (int, int):
     # count the number of exchanges and compares
     compares = 0
@@ -24,26 +27,6 @@ def shell_sort(arr: list) -> (int, int):
     return compares, exchanges
 
 
-def insertion_sort(arr: list) -> (int, int):
-    # count the number of exchanges and compares
-    compares = 0
-    exchanges = 0
-
-    # sort arr in increasing order
-    for i in range(len(arr)):
-
-        j = i
-
-        # exchange i element with the predecessor until find a smaller one
-        while j > 0 and arr[j] < arr[j - 1]:
-            compares += 1  # sum compare
-            exchanges += 1
-            exchange(arr, j, j - 1)
-            j -= 1
-
-    return compares, exchanges
-
-
 def selection_sort(arr: list) -> int:
     # count the number of exchanges and compares
     compares = 0
@@ -65,8 +48,86 @@ def selection_sort(arr: list) -> int:
     return compares, exchanges
 
 
+def insertion_sort(arr: list) -> (int, int):
+    # count the number of exchanges and compares
+    compares = 0
+    exchanges = 0
+
+    # sort arr in increasing order
+    for i in range(len(arr)):
+
+        j = i
+
+        # exchange i element with the predecessor until find a smaller one
+        while j > 0 and arr[j] < arr[j - 1]:
+            compares += 1  # sum compare
+            exchanges += 1
+            exchange(arr, j, j - 1)
+            j -= 1
+
+    return compares, exchanges
+
+
+def binary_insertion_sort(arr: list) -> (list, int, int):
+    # count the number of exchanges and compares
+    compares = 0
+    exchanges = 0
+
+    for i in range(1, len(arr)):  # starts in the second item
+        val = arr[i]  # gets current value
+        j, compares = binary_search(arr, val, 0, i-1, compares)  # do the binary search
+        exchanges += 1
+        arr = arr[:j] + [val] + arr[j:i] + arr[i+1:]  # re-order the list by the binary search result
+
+    return arr, compares, exchanges
+
+
+def binary_search(arr: list, val: int, start: int, end: int, compares: int) -> (int, int):
+    if start == end:
+        if arr[start] > val:
+            return start, compares
+        else:
+            return start + 1, compares
+
+    if start > end:
+        return start, compares
+
+    mid = int((start + end) / 2)
+    if arr[mid] < val:
+        compares += 1
+        return binary_search(arr, val, mid + 1, end, compares)
+    elif arr[mid] > val:
+        compares += 1
+        return binary_search(arr, val, start, mid - 1, compares)
+    else:
+        return mid, compares
+
+
 def exchange(arr: list, i: int, j: int):
     # exchange two values of an array
     t = arr[i]
     arr[i] = arr[j]
     arr[j] = t
+
+
+def isSorted(arr: list) -> bool:
+    # select the compare function by arr initial order
+
+    compare = smaller
+
+    if arr[0] > arr[1]:
+        compare = bigger
+
+    for i in range(1, len(arr)):
+        if not compare(arr[i - 1], arr[i]):
+            return False
+
+    return True
+
+
+def smaller(val1: int, val2: int):
+    return val1 <= val2
+
+
+def bigger(val1: int, val2: int):
+    return val1 >= val2

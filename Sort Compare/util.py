@@ -21,6 +21,11 @@ def log(data: dict):
 
 
 def show_and_save_data(data: list):
+    for i in range(0, len(data)):
+        aux_show_and_save_data(data[i])
+
+
+def aux_show_and_save_data(data: list):
     # Panda Data Frame
     pandas.set_option('display.max_columns', None)
 
@@ -28,7 +33,7 @@ def show_and_save_data(data: list):
 
     df = pandas.DataFrame(data)
     df = df[cols]
-    df.to_csv('test.csv')
+    df.to_csv('test_size_%d.csv' % data[0]['size'])
 
     values_time = []
     values_time_sd = []
@@ -45,14 +50,15 @@ def show_and_save_data(data: list):
         values_compare.append(data[i]['md_compare'])
         values_compare_sd.append(data[i]['sd_compare'])
 
-    show_data(data, 'Algorithm: Time average', values_time, values_time_sd)
-    show_data(data, 'Algorithm: Exchanges average', values_exchange, values_exchange_sd)
-    show_data(data, 'Algorithm: Compares average', values_compare, values_compare_sd)
+    show_data(data, 'Algorithm: Time average', 'Time (ms)', values_time, values_time_sd)
+    show_data(data, 'Algorithm: Exchanges average', 'Number of Exchanges', values_exchange, values_exchange_sd)
+    show_data(data, 'Algorithm: Compares average', 'Number of Compares', values_compare, values_compare_sd)
 
 
-def show_data(data: list, title: str, values: list, dps: list):
+def show_data(data: list, title: str, label: str, values: list, dps: list):
     # Plot
     names = []
+    size = data[0]['size']
 
     for i in range(0, len(data)):
         names.append(data[i]['algorithm'])
@@ -64,8 +70,8 @@ def show_data(data: list, title: str, values: list, dps: list):
     ax.set_yticks(y_pos)
     ax.set_yticklabels(names)
     ax.invert_yaxis()  # labels read top-to-bottom
-    ax.set_xlabel('Time (ms)')
-    ax.set_title(title)
+    ax.set_xlabel(label)
+    ax.set_title(title + ', size: %d' % size)
 
     plt.show()
 
