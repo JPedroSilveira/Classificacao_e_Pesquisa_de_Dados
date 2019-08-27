@@ -3,20 +3,21 @@ import math
 from pandas.compat.numpy import function
 
 
+# TO DO: Documentar a busca binária (simples), merge sort (simples) e o quick sort(simples)
+
+
 def get_sort_name(sort_id: str) -> str:
     dic = {'shell_sort': 'Shell Sort', 'selection_sort': 'Selection Sort',
-           'insertion_sort': 'Insertion Sort', 'binary_insertion_sort': 'Binary Search Sort'}
+           'insertion_sort': 'Insertion Sort', 'binary_insertion_sort': 'Binary Search Sort',
+           'merge_sort': 'Merge Sort', 'quick_sort': 'Quick Sort'}
     return dic[sort_id]
 
 
 def get_sort_function(sort_id: str) -> function:
     dic = {'shell_sort': shell_sort, 'selection_sort': selection_sort,
-           'insertion_sort': insertion_sort, 'binary_insertion_sort': binary_insertion_sort}
+           'insertion_sort': insertion_sort, 'binary_insertion_sort': binary_insertion_sort,
+           'merge_sort': merge_sort, 'quick_sort': quick_sort}
     return dic[sort_id]
-
-
-def get_shell_sort_id() -> str:
-    return 'shell_sort'
 
 
 def shell_sort(arr: list) -> (list, int, int):
@@ -45,10 +46,6 @@ def shell_sort(arr: list) -> (list, int, int):
     return arr, compares, exchanges
 
 
-def get_selection_sort_id() -> str:
-    return 'selection_sort'
-
-
 def selection_sort(arr: list) -> (list, int, int):
     # count the number of exchanges and compares
     compares = 0
@@ -70,10 +67,6 @@ def selection_sort(arr: list) -> (list, int, int):
     return arr, compares, exchanges
 
 
-def get_insertion_sort_id() -> str:
-    return 'insertion_sort'
-
-
 def insertion_sort(arr: list) -> (list, int, int):
     # count the number of exchanges and compares
     compares = 0
@@ -92,10 +85,6 @@ def insertion_sort(arr: list) -> (list, int, int):
             j -= 1
 
     return arr, compares, exchanges
-
-
-def get_binary_insertion_sort_id() -> str:
-    return 'binary_insertion_sort_id'
 
 
 def binary_insertion_sort(arr: list) -> (list, int, int):
@@ -133,6 +122,113 @@ def binary_search(arr: list, val: int, start: int, end: int, compares: int) -> (
         return mid, compares
 
 
+def merge_sort(arr: list) -> (list, int, int):
+    compares = 0
+    exchanges = 0
+    aux = [0] * len(arr)
+    compares, exchanges = aux_merge_sort(arr, 0, len(arr) - 1, aux, compares, exchanges)
+
+    return arr, compares, exchanges
+
+
+def aux_merge_sort(arr: list, lo: int, hi: int, aux: list, compares: int, exchanges: int) -> (int, int):
+    if hi <= lo:
+        return compares, exchanges
+
+    mid = int(lo + (hi - lo) / 2)
+    compares, exchanges = aux_merge_sort(arr, lo, mid, aux, compares, exchanges)
+    compares, exchanges = aux_merge_sort(arr, mid + 1, hi, aux, compares, exchanges)
+    compares, exchanges = merge(arr, lo, mid, hi, aux, compares, exchanges)
+
+    return compares, exchanges
+
+
+def merge(arr: list, lo: int, mid: int, hi: int, aux: list, compares: int, exchanges: int) -> (int, int):
+    i = lo
+    j = mid + 1
+
+    k = lo
+    while k <= hi:
+        aux[k] = arr[k]
+        exchanges += 1
+        k += 1
+
+    k = lo
+    while k <= hi:
+        if i > mid:
+            exchanges += 1
+            arr[k] = aux[j]
+            j += 1
+        elif j > hi:
+            exchanges += 1
+            arr[k] = aux[i]
+            i += 1
+        elif aux[j] < aux[i]:
+            exchanges += 1
+            compares += 1
+            arr[k] = aux[j]
+            j += 1
+        else:
+            exchanges += 1
+            arr[k] = aux[i]
+            i += 1
+        k += 1
+
+    return compares, exchanges
+
+
+def quick_sort(arr: list) -> (list, int, int):
+    compares = 0
+    exchanges = 0
+    compares, exchanges = aux_quick_sort(arr, 0, len(arr) - 1, compares, exchanges)
+
+    return arr, compares, exchanges
+
+
+def aux_quick_sort(arr: list, lo: int, hi: int, compares: int, exchanges: int) -> (int, int):
+    if hi <= lo:
+        return compares, exchanges
+
+    j, compares, exchanges = partition(arr, lo, hi, compares, exchanges)
+
+    compares, exchanges = aux_quick_sort(arr, lo, j - 1, compares, exchanges)
+    compares, exchanges = aux_quick_sort(arr, j + 1, hi, compares, exchanges)
+
+    return compares, exchanges
+
+
+def partition(arr: list, lo: int, hi: int, compares: int, exchanges: int) -> (int, int, int):
+    i = lo
+    j = hi + 1
+    v = arr[lo]
+
+    while True:
+        i += 1
+        while arr[i] < v:
+            compares += 1
+            if i == hi:
+                break
+            i += 1
+
+        j -= 1
+        while v < arr[j]:
+            compares += 1
+            if j == lo:
+                break
+            j -= 1
+
+        if i >= j:
+            break
+
+        exchange(arr, i, j)
+        exchanges += 1
+
+    exchange(arr, lo, j)
+    exchanges += 1
+
+    return j, compares, exchanges
+
+
 def exchange(arr: list, i: int, j: int):
     # exchange two values of an array
     t = arr[i]
@@ -145,12 +241,13 @@ def is_sorted(arr: list) -> bool:
 
     compare = smaller
 
-    if arr[0] > arr[1]:
-        compare = bigger
+    if len(arr) >= 2:
+        if arr[0] > arr[1]:
+            compare = bigger
 
-    for i in range(1, len(arr)):
-        if not compare(arr[i - 1], arr[i]):
-            return False
+        for i in range(1, len(arr)):
+            if not compare(arr[i - 1], arr[i]):
+                return False
 
     return True
 

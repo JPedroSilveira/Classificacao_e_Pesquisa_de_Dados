@@ -8,7 +8,7 @@ def generate_random_int_arr(length: int) -> list:  # generate a array with lengt
     n = []
 
     for i in range(0, length):
-        n.append(random.randrange(0, length * (10 ** 3)))
+        n.append(random.randrange(0, length * 10))
 
     return n
 

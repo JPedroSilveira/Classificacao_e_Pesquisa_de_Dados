@@ -1,9 +1,0 @@
-,algorithm,type,size,md_exchange,md_compare,md_time
-0,Insertion Sort,R,10,29.666666666666668,29.666666666666668,0.0
-1,Insertion Sort,R,10,22.0,22.0,0.0
-2,Selection Sort,R,10,10.0,45.0,0.0
-3,Selection Sort,R,10,10.0,45.0,0.0
-4,Shell Sort,R,10,14.666666666666666,14.666666666666666,0.0
-5,Shell Sort,R,10,14.666666666666666,14.666666666666666,0.0
-6,Binary Search Sort,R,10,9.0,14.0,0.0
-7,Binary Search Sort,R,10,9.0,14.666666666666666,0.0

@@ -22,15 +22,13 @@ def test_battery(repeat: int, size_min: int, size_max: int, jump: int, sort_list
 
         while size <= size_max:
 
-            result = test_sort_n_times(sort_list[i]['function'], sort_list[i]['name'], size_min, repeat)
+            result = test_sort_n_times(sort_list[i]['function'], sort_list[i]['name'], size, repeat)
 
             results.append(result)
 
-            data.log(result)
-
             size += jump
 
-    data.show_analysis(results)
+    data.generate_analysis(results)
 
 
 #   Realize "repeat" tests with arrays of N size in a sort function
@@ -42,14 +40,15 @@ def test_sort_n_times(sort_function: function, sort_name: str, size: int, repeat
     test_data = {'time': [], 'compare': [], 'exchange': []}
 
     for i in range(0, repeat):  # initialize the number of tests
-        print('Sort: %s - Time: %d - Hour: %s' % (sort_name, i, util.get_datatime()))  # display info about execution
+        # display info about execution
+        print('Sort: %s - Size: %d - Time: %d - Hour: %s' % (sort_name, size, i, util.get_datatime()))
         # test sort and get the results
         time, compare, exchange = test_sort(sort_function, sort_name, size)
         test_data['time'].append(time)
         test_data['compare'].append(compare)
         test_data['exchange'].append(exchange)
 
-    return {'algorithm': sort_name, 'type': 'R', 'size': 10 ** size,
+    return {'algorithm': sort_name, 'type': 'R', 'size': size,
             'md_exchange': util.get_average(test_data['exchange']),
             'sd_exchange': util.get_std(test_data['exchange']),
             'md_compare': util.get_average(test_data['compare']),
@@ -63,11 +62,11 @@ def test_sort_n_times(sort_function: function, sort_name: str, size: int, repeat
 #       sort_function: function, sort function
 #       sort_name: string, name of the sort algorithm
 def test_sort(sort_function: function, sort_name: str, size: int) -> (int, int, int):
-    array = util.generate_random_int_arr(10 ** size)  # generate random array
+    array = util.generate_random_int_arr(size)  # generate random array
     st_time = util.get_time()  # get init time
-    print(sort_name)
+
     sorted_arr, t_compare, t_exchange = sort_function(array)  # sort array
 
-    assert sort.is_sorted(sorted_arr), '%d failed' % sort_name
+    assert sort.is_sorted(sorted_arr), '%s failed' % sort_name
 
     return (util.get_time() - st_time), t_compare, t_exchange
