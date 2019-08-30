@@ -1,47 +1,116 @@
 import math
-
+from typing import Any
 from pandas.compat.numpy import function
 
 
-# TO DO: Documentar a busca binária (simples), merge sort (simples) e o quick sort(simples)
+# All these sorts have the same return value for generic proposes
+#  Return: list (the ordered array); int (the number of compares); int (the number of exchanges)
+
+
+def get_sorts(ids: list) -> list:
+    sort_list = []
+
+    for sort_id in ids:
+        sort_list.append({'function': get_sort_function(sort_id),
+                          'name': get_sort_name(sort_id)})
+
+    return sort_list
 
 
 def get_sort_name(sort_id: str) -> str:
     dic = {'shell_sort': 'Shell Sort', 'selection_sort': 'Selection Sort',
            'insertion_sort': 'Insertion Sort', 'binary_insertion_sort': 'Binary Search Sort',
-           'merge_sort': 'Merge Sort', 'quick_sort': 'Quick Sort'}
+           'merge_sort': 'Merge Sort', 'quick_sort': 'Quick Sort', 'bubble_sort': 'Bubble Sort',
+           'comb_sort': 'Comb Sort', 'shake_sort': 'Shake Sort', 'improved_quick_sort': 'Improved Quick Sort'}
     return dic[sort_id]
 
 
 def get_sort_function(sort_id: str) -> function:
     dic = {'shell_sort': shell_sort, 'selection_sort': selection_sort,
            'insertion_sort': insertion_sort, 'binary_insertion_sort': binary_insertion_sort,
-           'merge_sort': merge_sort, 'quick_sort': quick_sort}
+           'merge_sort': merge_sort, 'quick_sort': quick_sort, 'bubble_sort': bubble_sort,
+           'comb_sort': comb_sort, 'shake_sort': shake_sort, 'improved_quick_sort': improved_quick_sort}
     return dic[sort_id]
 
 
-def shell_sort(arr: list) -> (list, int, int):
-    # count the number of exchanges and compares
-    compares = 0
-    exchanges = 0
+def bubble_sort(arr: list) -> (list, int, int):
+    exchanges = compares = before_exchange = 0
+    length = len(arr) - 1
+    should_exchange = True
 
-    n = len(arr)  # save the length of the array
-    h = 1  # starts h
+    while should_exchange:
+        should_exchange = False
+        for i in range(0, length):
+            compares += + 1
+            if arr[i] > arr[i + 1]:
+                tmp = arr[i]
+                arr[i] = arr[i + 1]
+                arr[i + 1] = tmp
+                should_exchange = True
+                before_exchange = i
+                exchanges += 1
+        length = before_exchange
 
-    while h < (n / 3):
-        h = 3 * h + 1  # 1, 4, 13, 40, 121, ... Set the h value by the array length
+    return arr, compares, exchanges
 
-    while h >= 1:  # h-sort the array
-        i = h  # start i with h value
-        while i < n:  # insert arr[i] among a[i-h], a[i-2*h], a[i-3*h], ...
-            j = i  # start j with i value
-            while j >= h and arr[j] < arr[j - h]:
-                exchanges += 1  # increase the exchange count value
-                compares += 1  # increase the compare count value
-                exchange(arr, j, j - h)
-                j -= h
+
+def shake_sort(arr: list) -> (list, int, int):
+    exchanges = compares = 0
+    swapped = True
+    start = 0
+    end = len(arr) - 1
+
+    while swapped:
+        swapped = False
+
+        for i in range(start, end):
+            if arr[i] > arr[i + 1]:
+                exchange(arr, i, i + 1)
+                exchanges += 1
+                swapped = True
+            compares += 1
+
+        if not swapped:
+            return arr, compares, exchanges
+
+        swapped = False
+
+        end -= 1
+
+        for i in range(end - 1, start - 1, -1):
+            if arr[i] > arr[i + 1]:
+                exchange(arr, i, i + 1)
+                exchanges += 1
+                swapped = True
+            compares += 1
+
+        start += 1
+
+    return arr, compares, exchanges
+
+
+def comb_sort(arr: list) -> (list, int, int):
+    length = len(arr)
+    exchanges = compares = 0
+    gap = length
+    shrink = 1.3
+    arr_sorted = False
+
+    while not arr_sorted:
+        gap = math.floor(gap / shrink)
+
+        if gap <= 1:
+            gap = 1
+            arr_sorted = True
+
+        i = 0
+        while (i + gap) < length:
+            if arr[i] > arr[i + gap]:
+                exchange(arr, i, i + gap)
+                exchanges += 1
+                arr_sorted = False
+            compares += 1
             i += 1
-        h = int(h / 3)
 
     return arr, compares, exchanges
 
@@ -120,6 +189,32 @@ def binary_search(arr: list, val: int, start: int, end: int, compares: int) -> (
         return binary_search(arr, val, start, mid - 1, compares)
     else:
         return mid, compares
+
+
+def shell_sort(arr: list) -> (list, int, int):
+    # count the number of exchanges and compares
+    compares = 0
+    exchanges = 0
+
+    n = len(arr)  # save the length of the array
+    h = 1  # starts h
+
+    while h < (n / 3):
+        h = 3 * h + 1  # 1, 4, 13, 40, 121, ... Set the h value by the array length
+
+    while h >= 1:  # h-sort the array
+        i = h  # start i with h value
+        while i < n:  # insert arr[i] among a[i-h], a[i-2*h], a[i-3*h], ...
+            j = i  # start j with i value
+            while j >= h and arr[j] < arr[j - h]:
+                exchanges += 1  # increase the exchange count value
+                compares += 1  # increase the compare count value
+                exchange(arr, j, j - h)
+                j -= h
+            i += 1
+        h = int(h / 3)
+
+    return arr, compares, exchanges
 
 
 def merge_sort(arr: list) -> (list, int, int):
@@ -229,6 +324,85 @@ def partition(arr: list, lo: int, hi: int, compares: int, exchanges: int) -> (in
     return j, compares, exchanges
 
 
+def improved_quick_sort(arr: list) -> (int, int, int):
+    compares = exchanges = 0  # Start counters
+
+    stack = [0, len(arr) - 1]  # Start stack with the first and last value
+
+    while len(stack) > 0:
+        # Get the top of the stack in order of last and first element
+        last = get_from_stack(stack)
+        first = get_from_stack(stack)
+
+        # Order partially the partition
+        middle, middle_range, compares, exchanges = improved_quick_partition(arr, first, last, compares, exchanges)
+
+        # Verify it has a new partition of left side to order
+        if (middle - 1) > first:
+            # Add to stack ever the last element after the first
+            stack.append(first)
+            stack.append(middle - 1)
+
+        # Verify it has a new partition of right side to order
+        if (middle + middle_range) < last:
+            # Add to stack ever the last element after the first
+            stack.append(middle + middle_range)
+            stack.append(last)
+
+    return arr, compares, exchanges
+
+
+# Return the top element of a stack list
+def get_from_stack(stack: list):
+    top = stack[len(stack) - 1]
+    del stack[len(stack) - 1]
+    return top
+
+
+# Select the mean between three elements in a list using their positions
+def mean3(arr: list, first: int, last: int, middle: int) -> Any:
+    first_value = arr[first]
+    last_value = arr[last]
+    middle_value = arr[middle]
+
+    if first_value <= middle_value <= last_value or last_value <= middle_value <= first_value:
+        return middle_value
+    elif middle_value <= first_value <= last_value or last_value <= first_value <= middle_value:
+        return first_value
+    else:
+        return last_value
+
+
+def improved_quick_partition(arr: list, low: int, high: int, compares: int, exchanges: int) -> (int, int, int, int):
+    # Uses the mean-3-way approach
+    middle_value = mean3(arr, low, high, low + math.floor((high - low) / 2))
+
+    # Start the sub-lists
+    left = []
+    right = []
+    middle = []
+
+    # Compare to re-order every elements it's necessary
+    for i in arr[low:high + 1]:
+        if i > middle_value:
+            right.append(i)
+        elif i < middle_value:
+            left.append(i)
+        else:
+            middle.append(i)
+        compares += 1
+        exchanges += 1
+
+    # Concatenate the results
+    arr[low:high + 1] = left + middle + right
+    exchanges += 1
+
+    # Return first the middle value, after the middle range (to not re-order the same values), after the compares and
+    # exchanges
+    return low + len(left), len(middle), compares, exchanges
+
+
+# Exchange two values of a list by their positions
 def exchange(arr: list, i: int, j: int):
     # exchange two values of an array
     t = arr[i]
@@ -236,6 +410,7 @@ def exchange(arr: list, i: int, j: int):
     arr[j] = t
 
 
+# Verify if a list is in desc or asc order
 def is_sorted(arr: list) -> bool:
     # select the compare function by arr initial order
 

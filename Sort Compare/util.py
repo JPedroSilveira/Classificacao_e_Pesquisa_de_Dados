@@ -13,17 +13,17 @@ def generate_random_int_arr(length: int) -> list:  # generate a array with lengt
     return n
 
 
-def get_average(arr: list) -> int:  # calculate the average of a int array
+def get_average(arr: list) -> float:  # calculate the average of a int array
     return numpy.mean(arr)
 
 
-def get_std(arr: list) -> int:
+def get_std(arr: list) -> float:
     return numpy.std(arr)
 
 
 def get_time():
-    return time.process_time()
+    return time.time()
 
 
-def get_datatime():
+def get_data_time():
     return datetime.datetime.now()

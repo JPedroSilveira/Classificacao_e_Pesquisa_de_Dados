@@ -1,0 +1,31 @@
+,algorithm,type,size,md_exchange,md_compare,md_time
+0,Improved Quick Sort,R,10000,0.0,0.0,0.0
+1,Improved Quick Sort,R,20000,0.0,0.0,0.0
+2,Improved Quick Sort,R,30000,0.0,0.0,0.0
+3,Improved Quick Sort,R,40000,0.0,0.0,0.0
+4,Improved Quick Sort,R,50000,0.0,0.0,0.0
+5,Improved Quick Sort,R,60000,0.0,0.0,0.0
+6,Improved Quick Sort,R,70000,0.0,0.0,0.0
+7,Improved Quick Sort,R,80000,0.0,0.0,0.0
+8,Improved Quick Sort,R,90000,0.0,0.0,0.0
+9,Improved Quick Sort,R,100000,0.0,0.0,0.0
+10,Quick Sort,R,10000,10.0,13.0,0.0
+11,Quick Sort,R,20000,10.0,13.0,0.0
+12,Quick Sort,R,30000,10.0,13.0,0.0
+13,Quick Sort,R,40000,10.0,13.0,0.0
+14,Quick Sort,R,50000,10.0,13.0,0.0
+15,Quick Sort,R,60000,10.0,13.0,0.0
+16,Quick Sort,R,70000,10.0,13.0,0.0015625
+17,Quick Sort,R,80000,10.0,13.0,0.0
+18,Quick Sort,R,90000,10.0,13.0,0.0
+19,Quick Sort,R,100000,10.0,13.0,0.0
+20,Insertion Sort,R,10000,22.0,22.0,0.0
+21,Insertion Sort,R,20000,22.0,22.0,0.0
+22,Insertion Sort,R,30000,22.0,22.0,0.0
+23,Insertion Sort,R,40000,22.0,22.0,0.0
+24,Insertion Sort,R,50000,22.0,22.0,0.0
+25,Insertion Sort,R,60000,22.0,22.0,0.0
+26,Insertion Sort,R,70000,22.0,22.0,0.0
+27,Insertion Sort,R,80000,22.0,22.0,0.0
+28,Insertion Sort,R,90000,22.0,22.0,0.0
+29,Insertion Sort,R,100000,22.0,22.0,0.0

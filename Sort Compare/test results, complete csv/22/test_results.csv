@@ -1,0 +1,3 @@
+,algorithm,type,size,md_exchange,md_compare,md_time
+0,Improved Quick Sort,R,10000000,0.0,0.0,0.0
+1,Quick Sort,R,10000000,10.0,13.0,0.0

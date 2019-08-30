@@ -40,13 +40,14 @@ def test_sort_n_times(sort_function: function, sort_name: str, size: int, repeat
     test_data = {'time': [], 'compare': [], 'exchange': []}
 
     for i in range(0, repeat):  # initialize the number of tests
-        # display info about execution
-        print('Sort: %s - Size: %d - Time: %d - Hour: %s' % (sort_name, size, i, util.get_datatime()))
         # test sort and get the results
         time, compare, exchange = test_sort(sort_function, sort_name, size)
         test_data['time'].append(time)
         test_data['compare'].append(compare)
         test_data['exchange'].append(exchange)
+
+        # display info about execution
+        print('Sort: %s - Size: %d - Time: %d - Finished at: %s' % (sort_name, size, i, util.get_data_time()))
 
     return {'algorithm': sort_name, 'type': 'R', 'size': size,
             'md_exchange': util.get_average(test_data['exchange']),
@@ -61,12 +62,14 @@ def test_sort_n_times(sort_function: function, sort_name: str, size: int, repeat
 #       size: int, random array size
 #       sort_function: function, sort function
 #       sort_name: string, name of the sort algorithm
-def test_sort(sort_function: function, sort_name: str, size: int) -> (int, int, int):
+def test_sort(sort_function: function, sort_name: str, size: int) -> (float, int, int):
     array = util.generate_random_int_arr(size)  # generate random array
     st_time = util.get_time()  # get init time
 
     sorted_arr, t_compare, t_exchange = sort_function(array)  # sort array
 
+    f_time = util.get_time() - st_time
+
     assert sort.is_sorted(sorted_arr), '%s failed' % sort_name
 
-    return (util.get_time() - st_time), t_compare, t_exchange
+    return f_time, t_compare, t_exchange

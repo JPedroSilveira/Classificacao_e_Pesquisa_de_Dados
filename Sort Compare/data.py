@@ -26,7 +26,7 @@ def generate_analysis(data: list):
     compare_algorithm_by_test_list_size_folder = dir.get_new_test_folder(path_compare_algorithm_test_list_size)
     csv_folder = dir.get_new_test_folder(path_csv_folder)
 
-    # generate a csv with all resuts
+    # generate a csv with all results
     generate_csv(data, csv_folder)
 
     # generate graphics comparing the algorithms

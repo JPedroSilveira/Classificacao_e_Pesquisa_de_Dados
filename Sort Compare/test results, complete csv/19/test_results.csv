@@ -1,0 +1,41 @@
+,algorithm,type,size,md_exchange,md_compare,md_time
+0,Improved Quick Sort,R,1,0.0,0.0,1.5625e-05
+1,Improved Quick Sort,R,5001,0.0,0.0,4.6875e-05
+2,Improved Quick Sort,R,10001,0.0,0.0,6.25e-05
+3,Improved Quick Sort,R,15001,0.0,0.0,4.6875e-05
+4,Improved Quick Sort,R,20001,0.0,0.0,6.25e-05
+5,Improved Quick Sort,R,25001,0.0,0.0,9.375e-05
+6,Improved Quick Sort,R,30001,0.0,0.0,7.8125e-05
+7,Improved Quick Sort,R,35001,0.0,0.0,7.8125e-05
+8,Improved Quick Sort,R,40001,0.0,0.0,4.6875e-05
+9,Improved Quick Sort,R,45001,0.0,0.0,3.125e-05
+10,Improved Quick Sort,R,50001,0.0,0.0,4.6875e-05
+11,Improved Quick Sort,R,55001,0.0,0.0,3.125e-05
+12,Improved Quick Sort,R,60001,0.0,0.0,6.25e-05
+13,Improved Quick Sort,R,65001,0.0,0.0,4.6875e-05
+14,Improved Quick Sort,R,70001,0.0,0.0,9.375e-05
+15,Improved Quick Sort,R,75001,0.0,0.0,1.5625e-05
+16,Improved Quick Sort,R,80001,0.0,0.0,7.8125e-05
+17,Improved Quick Sort,R,85001,0.0,0.0,3.125e-05
+18,Improved Quick Sort,R,90001,0.0,0.0,6.25e-05
+19,Improved Quick Sort,R,95001,0.0,0.0,4.6875e-05
+20,Insertion Sort,R,1,22.0,22.0,4.6875e-05
+21,Insertion Sort,R,5001,22.0,22.0,3.125e-05
+22,Insertion Sort,R,10001,22.0,22.0,1.5625e-05
+23,Insertion Sort,R,15001,22.0,22.0,4.6875e-05
+24,Insertion Sort,R,20001,22.0,22.0,4.6875e-05
+25,Insertion Sort,R,25001,22.0,22.0,0.000140625
+26,Insertion Sort,R,30001,22.0,22.0,1.5625e-05
+27,Insertion Sort,R,35001,22.0,22.0,3.125e-05
+28,Insertion Sort,R,40001,22.0,22.0,1.5625e-05
+29,Insertion Sort,R,45001,22.0,22.0,4.6875e-05
+30,Insertion Sort,R,50001,22.0,22.0,3.125e-05
+31,Insertion Sort,R,55001,22.0,22.0,6.25e-05
+32,Insertion Sort,R,60001,22.0,22.0,1.5625e-05
+33,Insertion Sort,R,65001,22.0,22.0,0.0
+34,Insertion Sort,R,70001,22.0,22.0,3.125e-05
+35,Insertion Sort,R,75001,22.0,22.0,6.25e-05
+36,Insertion Sort,R,80001,22.0,22.0,3.125e-05
+37,Insertion Sort,R,85001,22.0,22.0,4.6875e-05
+38,Insertion Sort,R,90001,22.0,22.0,4.6875e-05
+39,Insertion Sort,R,95001,22.0,22.0,7.8125e-05

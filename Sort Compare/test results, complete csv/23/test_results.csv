@@ -1,0 +1,21 @@
+,algorithm,type,size,md_exchange,md_compare,md_time
+0,Improved Quick Sort,R,10000,0.0,0.0,0.0
+1,Improved Quick Sort,R,20000,0.0,0.0,0.0
+2,Improved Quick Sort,R,30000,0.0,0.0,0.0
+3,Improved Quick Sort,R,40000,0.0,0.0,0.0
+4,Improved Quick Sort,R,50000,0.0,0.0,0.0
+5,Improved Quick Sort,R,60000,0.0,0.0,0.0
+6,Improved Quick Sort,R,70000,0.0,0.0,0.0
+7,Improved Quick Sort,R,80000,0.0,0.0,0.0
+8,Improved Quick Sort,R,90000,0.0,0.0,0.0
+9,Improved Quick Sort,R,100000,0.0,0.0,0.0
+10,Quick Sort,R,10000,10.0,13.0,0.0
+11,Quick Sort,R,20000,10.0,13.0,0.0
+12,Quick Sort,R,30000,10.0,13.0,0.0
+13,Quick Sort,R,40000,10.0,13.0,0.0
+14,Quick Sort,R,50000,10.0,13.0,0.0
+15,Quick Sort,R,60000,10.0,13.0,0.0
+16,Quick Sort,R,70000,10.0,13.0,0.0
+17,Quick Sort,R,80000,10.0,13.0,0.0
+18,Quick Sort,R,90000,10.0,13.0,0.0
+19,Quick Sort,R,100000,10.0,13.0,0.0
