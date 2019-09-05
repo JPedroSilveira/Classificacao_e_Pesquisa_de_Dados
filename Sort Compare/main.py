@@ -3,14 +3,28 @@ import test
 
 
 def main():
-    repeat = 50
-    jump = 200000
-    size_min = 100000
-    size_max = 1000000
+    repeat = 10
+    jump = 100000
+    size_min = 1000
+    size_max = 1001000
 
-    sort_list = sort.get_sorts(['merge_sort', 'quick_sort', 'improved_quick_sort'])
+    arr_type = 'D'
 
-    test.test_battery(repeat, size_min, size_max, jump, sort_list)
+    sort_list = sort.get_sorts(['improved_quick_sort'])
+
+    test.test_battery(repeat, size_min, size_max, jump, sort_list, arr_type)
+
+    arr_type = 'E'
+
+    sort_list = sort.get_sorts(['quick_sort', 'improved_quick_sort'])
+
+    test.test_battery(repeat, size_min, size_max, jump, sort_list, arr_type)
+
+    arr_type = 'R'
+
+    sort_list = sort.get_sorts(['quick_sort', 'improved_quick_sort'])
+
+    test.test_battery(repeat, size_min, size_max, jump, sort_list, arr_type)
 
 
 main()

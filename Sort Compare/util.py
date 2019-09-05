@@ -13,6 +13,21 @@ def generate_random_int_arr(length: int) -> list:  # generate a array with lengt
     return n
 
 
+def generate_equal_int_arr(length: int) -> list:  # generate a array with one value repeated n times
+    n = random.randrange(0, length * 10)
+    return [n] * length
+
+
+def generate_desc_int_arr(length: int) -> list:  # generate a array in desc order
+    n = []
+    iv = 0
+
+    for i in range(0, length):
+        iv += random.randrange(0, length * 10)
+        n.append(i)
+
+    return n
+
 def get_average(arr: list) -> float:  # calculate the average of a int array
     return numpy.mean(arr)
 
