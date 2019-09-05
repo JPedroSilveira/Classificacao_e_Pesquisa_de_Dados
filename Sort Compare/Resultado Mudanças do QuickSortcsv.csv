@@ -1,0 +1,146 @@
+,algorithm,type,size,md_time,,
+0,Quick Sort,Elementos Repetidos,1000,0.001894832,,
+1,Quick Sort,Elementos Repetidos,101000,0.383972168,,
+2,Quick Sort,Elementos Repetidos,201000,0.810533595,,
+3,Quick Sort,Elementos Repetidos,301000,1.228014946,,
+4,Quick Sort,Elementos Repetidos,401000,1.79580636,,
+5,Quick Sort,Elementos Repetidos,501000,2.219262123,,
+6,Quick Sort,Elementos Repetidos,601000,2.620290375,,
+7,Quick Sort,Elementos Repetidos,701000,3.156160474,,
+8,Quick Sort,Elementos Repetidos,801000,3.697116876,,
+9,Quick Sort,Elementos Repetidos,901000,4.157084131,,
+10,Quick Sort,Elementos Repetidos,1001000,4.58114717,,
+11,Improved Quick Sort,Elementos Repetidos,1000,9.97E-05,,
+12,Improved Quick Sort,Elementos Repetidos,101000,0.024435472,,
+13,Improved Quick Sort,Elementos Repetidos,201000,0.04188323,,
+14,Improved Quick Sort,Elementos Repetidos,301000,0.07239635,,
+15,Improved Quick Sort,Elementos Repetidos,401000,0.090259671,,
+16,Improved Quick Sort,Elementos Repetidos,501000,0.110699987,,
+17,Improved Quick Sort,Elementos Repetidos,601000,0.138129234,,
+18,Improved Quick Sort,Elementos Repetidos,701000,0.159267974,,
+19,Improved Quick Sort,Elementos Repetidos,801000,0.1859056,,
+20,Improved Quick Sort,Elementos Repetidos,901000,0.205747581,,
+21,Improved Quick Sort,Elementos Repetidos,1001000,0.231381559,,
+22,Improved Quick Sort,Decrescente,1000,0.003590155,,
+23,Improved Quick Sort,Decrescente,101000,0.458671474,,
+24,Improved Quick Sort,Decrescente,201000,0.949763989,,
+25,Improved Quick Sort,Decrescente,301000,1.566109872,,
+26,Improved Quick Sort,Decrescente,401000,2.40227282,,
+27,Improved Quick Sort,Decrescente,501000,2.533230019,,
+28,Improved Quick Sort,Decrescente,601000,3.18737359,,
+29,Improved Quick Sort,Decrescente,701000,3.765337801,,
+30,Improved Quick Sort,Decrescente,801000,4.237069035,,
+31,Improved Quick Sort,Decrescente,901000,4.639198184,,
+32,Improved Quick Sort,Decrescente,1001000,5.018787313,,
+33,Quick Sort,Decrescente,1000,StackOverFlow,,
+,,,,,,
+Tentativa do QuickSort com listas decrescentes menores ,,,,,,
+Resultado: StackOverFlow apartir de 1000 elementos,,,,,,
+,Algoritmo,Tipo,Tamanho,Comparações,Trocas,Tempo
+0,Quick Sort,Decrescente,10,9,45,0
+1,Quick Sort,Decrescente,20,19,190,0
+2,Quick Sort,Decrescente,30,29,435,9.97E-05
+3,Quick Sort,Decrescente,40,39,780,0
+4,Quick Sort,Decrescente,50,49,1225,1.00E-04
+5,Quick Sort,Decrescente,60,59,1770,0.000202107
+6,Quick Sort,Decrescente,70,69,2415,0.000401473
+7,Quick Sort,Decrescente,80,79,3160,0.000499487
+8,Quick Sort,Decrescente,90,89,4005,0.00059557
+9,Quick Sort,Decrescente,100,99,4950,0.000698376
+10,Quick Sort,Decrescente,110,109,5995,0.000896597
+11,Quick Sort,Decrescente,120,119,7140,0.000997353
+12,Quick Sort,Decrescente,130,129,8385,0.00119772
+13,Quick Sort,Decrescente,140,139,9730,0.001891804
+14,Quick Sort,Decrescente,150,149,11175,0.001595998
+15,Quick Sort,Decrescente,160,159,12720,0.002193689
+16,Quick Sort,Decrescente,170,169,14365,0.003091836
+17,Quick Sort,Decrescente,180,179,16110,0.003590345
+18,Quick Sort,Decrescente,190,189,17955,0.002393484
+19,Quick Sort,Decrescente,200,199,19900,0.00259316
+20,Quick Sort,Decrescente,210,209,21945,0.002692604
+21,Quick Sort,Decrescente,220,219,24090,0.003091741
+22,Quick Sort,Decrescente,230,229,26335,0.002892208
+23,Quick Sort,Decrescente,240,239,28680,0.003291059
+24,Quick Sort,Decrescente,250,249,31125,0.003690028
+25,Quick Sort,Decrescente,260,259,33670,0.004089093
+26,Quick Sort,Decrescente,270,269,36315,0.004389048
+27,Quick Sort,Decrescente,280,279,39060,0.006979203
+28,Quick Sort,Decrescente,290,289,41905,0.00588305
+29,Quick Sort,Decrescente,300,299,44850,0.005788231
+30,Quick Sort,Decrescente,310,309,47895,0.011964679
+31,Quick Sort,Decrescente,320,319,51040,0.006380272
+32,Quick Sort,Decrescente,330,329,54285,0.006684875
+33,Quick Sort,Decrescente,340,339,57630,0.006984735
+34,Quick Sort,Decrescente,350,349,61075,0.007480836
+35,Quick Sort,Decrescente,360,359,64620,0.008078885
+36,Quick Sort,Decrescente,370,369,68265,0.009169579
+37,Quick Sort,Decrescente,380,379,72010,0.00857563
+38,Quick Sort,Decrescente,390,389,75855,0.009374881
+39,Quick Sort,Decrescente,400,399,79800,0.009377003
+40,Quick Sort,Decrescente,410,409,83845,0.010971403
+41,Quick Sort,Decrescente,420,419,87990,0.011271405
+42,Quick Sort,Decrescente,430,429,92235,0.011267471
+43,Quick Sort,Decrescente,440,439,96580,0.011672831
+44,Quick Sort,Decrescente,450,449,101025,0.013362551
+45,Quick Sort,Decrescente,460,459,105570,0.016751266
+46,Quick Sort,Decrescente,470,469,110215,0.014164734
+47,Quick Sort,Decrescente,480,479,114960,0.01885035
+48,Quick Sort,Decrescente,490,489,119805,0.018561268
+49,Quick Sort,Decrescente,500,499,124750,0.017359018
+50,Quick Sort,Decrescente,510,509,129795,0.02602973
+51,Quick Sort,Decrescente,520,519,134940,0.018549895
+52,Quick Sort,Decrescente,530,529,140185,0.017448902
+53,Quick Sort,Decrescente,540,539,145530,0.022243714
+54,Quick Sort,Decrescente,550,549,150975,0.018853688
+55,Quick Sort,Decrescente,560,559,156520,0.023040533
+56,Quick Sort,Decrescente,570,569,162165,0.023536301
+57,Quick Sort,Decrescente,580,579,167910,0.021645379
+58,Quick Sort,Decrescente,590,589,173755,0.022932982
+59,Quick Sort,Decrescente,600,599,179700,0.025331306
+60,Quick Sort,Decrescente,610,609,185745,0.024131179
+61,Quick Sort,Decrescente,620,619,191890,0.025930429
+62,Quick Sort,Decrescente,630,629,198135,0.029716635
+63,Quick Sort,Decrescente,640,639,204480,0.025329638
+64,Quick Sort,Decrescente,650,649,210925,0.025930619
+65,Quick Sort,Decrescente,660,659,217470,0.027824473
+66,Quick Sort,Decrescente,670,669,224115,0.028717756
+67,Quick Sort,Decrescente,680,679,230860,0.029126287
+68,Quick Sort,Decrescente,690,689,237705,0.030614758
+69,Quick Sort,Decrescente,700,699,244650,0.031212425
+70,Quick Sort,Decrescente,710,709,251695,0.039298129
+71,Quick Sort,Decrescente,720,719,258840,0.03282218
+72,Quick Sort,Decrescente,730,729,266085,0.034901619
+73,Quick Sort,Decrescente,740,739,273430,0.038987684
+74,Quick Sort,Decrescente,750,749,280875,0.035105944
+75,Quick Sort,Decrescente,760,759,288420,0.03640337
+76,Quick Sort,Decrescente,770,769,296065,0.03879292
+77,Quick Sort,Decrescente,780,779,303810,0.041688299
+78,Quick Sort,Decrescente,790,789,311655,0.041192126
+79,Quick Sort,Decrescente,800,799,319600,0.047172546
+80,Quick Sort,Decrescente,810,809,327645,0.045879197
+81,Quick Sort,Decrescente,820,819,335790,0.042085528
+82,Quick Sort,Decrescente,830,829,344035,0.051875901
+83,Quick Sort,Decrescente,840,839,352380,0.043982434
+84,Quick Sort,Decrescente,850,849,360825,0.061233616
+85,Quick Sort,Decrescente,860,859,369370,0.046776414
+86,Quick Sort,Decrescente,870,869,378015,0.049085355
+87,Quick Sort,Decrescente,880,879,386760,0.049467587
+88,Quick Sort,Decrescente,890,889,395605,0.049269676
+89,Quick Sort,Decrescente,900,899,404550,0.050563717
+90,Quick Sort,Decrescente,910,909,413595,0.065119338
+91,Quick Sort,Decrescente,920,919,422740,0.056148553
+92,Quick Sort,Decrescente,930,929,431985,0.067015529
+93,Quick Sort,Decrescente,940,939,441330,0.057546091
+94,Quick Sort,Decrescente,950,949,450775,0.059047627
+95,Quick Sort,Decrescente,960,959,460320,0.062331367
+96,Quick Sort,Decrescente,970,969,469965,0.06084249
+97,Quick Sort,Decrescente,980,979,479710,0.061435437
+98,Quick Sort,Decrescente,990,989,489555,0.080891871
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
