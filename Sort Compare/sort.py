@@ -21,7 +21,8 @@ def get_sort_name(sort_id: str) -> str:
     dic = {'shell_sort': 'Shell Sort', 'selection_sort': 'Selection Sort',
            'insertion_sort': 'Insertion Sort', 'binary_insertion_sort': 'Binary Search Sort',
            'merge_sort': 'Merge Sort', 'quick_sort': 'Quick Sort', 'bubble_sort': 'Bubble Sort',
-           'comb_sort': 'Comb Sort', 'shake_sort': 'Shake Sort', 'improved_quick_sort': 'Improved Quick Sort'}
+           'comb_sort': 'Comb Sort', 'shake_sort': 'Shake Sort', 'improved_quick_sort': 'Improved Quick Sort',
+           'heap_sort': 'Heap Sort'}
     return dic[sort_id]
 
 
@@ -29,7 +30,8 @@ def get_sort_function(sort_id: str) -> function:
     dic = {'shell_sort': shell_sort, 'selection_sort': selection_sort,
            'insertion_sort': insertion_sort, 'binary_insertion_sort': binary_insertion_sort,
            'merge_sort': merge_sort, 'quick_sort': quick_sort, 'bubble_sort': bubble_sort,
-           'comb_sort': comb_sort, 'shake_sort': shake_sort, 'improved_quick_sort': improved_quick_sort}
+           'comb_sort': comb_sort, 'shake_sort': shake_sort, 'improved_quick_sort': improved_quick_sort,
+           'heap_sort': heap_sort}
     return dic[sort_id]
 
 
@@ -408,6 +410,122 @@ def exchange(arr: list, i: int, j: int):
     t = arr[i]
     arr[i] = arr[j]
     arr[j] = t
+
+
+# Heapsort e funções auxiliares
+def heap_sort(array: list) -> (list, int, int):
+    compares = 0
+    exchanges = 0
+    heap_size = len(array)
+    qtd_elementos = heap_size - 1
+
+    compares, exchanges = build_heap_auxiliar(array, compares, exchanges)
+
+    for i in range(qtd_elementos, 0, -1):
+        compares += 1
+        array[i], array[0] = array[0], array[i]  # troca
+        heap_size = heap_size - 1
+        compares, exchanges = heapify(array, 0, heap_size, compares, exchanges)
+
+    return array, compares, exchanges
+
+# igual a seguinte, mas faz o registro do log com base em operações anteriores e posteriores para que o heap_sort conte-as direito
+def build_heap_auxiliar(array: list, compares: int, exchanges: int) -> (int, int):
+    ultimo_pai = math.floor(len(array)/2)-1
+    for indice in range(ultimo_pai, -1, -1):             # range entre [ultimo_pai e -1| (i.e., 0)
+        compares, exchanges = heapify(array, indice, len(array), compares, exchanges)
+    return compares, exchanges
+
+
+# usada para construir heaps (fora do heap sort):
+def build_heap(array: list) -> (int, int):
+    compares = 0
+    exchanges = 0
+    ultimo_pai = math.floor(len(array)/2)-1
+    for indice in range(ultimo_pai, -1, -1):             # range entre [ultimo_pai e -1| (i.e., 0)
+        compares, exchanges = heapify(array, indice, len(array), compares, exchanges)
+    return compares, exchanges
+
+
+def filho_e(elemento: int):
+    return math.floor(elemento*2+1)
+
+
+def filho_d(elemento: int):
+    return math.floor(elemento*2+2)
+
+
+def pai(elemento: int):
+    return math.floor(elemento/2)
+
+
+# heapify: verifica se o elemento na posição passada é um heap e se não for transforma-o em um
+# parâmetros: array, índice do elemento a heapificar, tamanho do heap, dicionário de logs
+def heapify(array: list, elemento: int, heap_size: int, compares: int, exchanges: int) -> (int,int):
+    maior = elemento  # O maior é inicializado como o elemento mãe
+    filho_esq = filho_e(elemento)
+    filho_dir = filho_d(elemento)
+
+    # Verifica se o filho da esquerda, caso exista, é maior que o maior elemento atual
+    if filho_esq < heap_size and array[maior] < array[filho_esq]:
+        maior = filho_esq
+
+    # Verifica se o filho da direita, caso exista, é maior que o maior elemento atual
+    if filho_dir < heap_size and array[maior] < array[filho_dir]:
+        maior = filho_dir
+
+    compares += 2  # Atualiza o número de compareções baseado na comparação direita e esquerda
+
+    # Troca o maior elemento se necessário (quando houver troca)
+    if maior != elemento:
+        array[elemento], array[maior] = array[maior], array[elemento]
+        exchanges += 2  # Atualiza o número de trocas baseado na troca do novo maior elemento
+        # Aplica o Heapify novamente no maior elemento.
+        compares, exchanges = heapify(array, maior, heap_size, compares, exchanges)
+
+    return compares, exchanges
+
+
+def heap_get_max(heap: list) -> int:
+   if len(heap) == 0:
+      return -1
+
+   return heap[0]
+
+
+def heap_max(heap: list) -> (int, int, int):
+    compares = 0
+    exchanges = 0
+
+    if len(heap) == 0:
+        return -1
+
+    max = heap_get_max(heap)
+
+    heap[0] = heap[-1]
+    del heap[-1]
+
+    compares, exchanges = heapify(heap, 0, len(heap), compares, exchanges)
+
+    return max, compares, exchanges
+
+
+def heap_insert(heap: list, elemento: int) -> (int, int):
+    compares = 0
+    exchanges = 0
+    index = len(heap)
+    heap.append(elemento)
+
+    while index != 0:
+        p = pai(index)
+        if heap[p] < heap[index]:
+            heap[p], heap[index] = heap[index], heap[p]
+            exchanges += 2
+
+        compares += 1
+        index = p
+
+    return compares, exchanges
 
 
 # Verify if a list is in desc or asc order
