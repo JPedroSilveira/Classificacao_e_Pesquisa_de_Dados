@@ -4,14 +4,14 @@ import test
 
 def main():
 
-    repeat = 10
+    repeat = 30
     jump = 10000
-    size_min = 1000
-    size_max = 101000
+    size_min = 10000
+    size_max = 100000
 
     arr_type = 'R'
 
-    sort_list = sort.get_sorts(['merge_insertion_sort'])
+    sort_list = sort.get_sorts(['merge_sort', 'quick_sort'])
 
     test.test_battery(repeat, size_min, size_max, jump, sort_list, arr_type)
 

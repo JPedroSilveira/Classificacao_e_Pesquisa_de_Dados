@@ -22,7 +22,7 @@ def get_sort_name(sort_id: str) -> str:
            'insertion_sort': 'Insertion Sort', 'binary_insertion_sort': 'Binary Search Sort',
            'merge_sort': 'Merge Sort', 'quick_sort': 'Quick Sort', 'bubble_sort': 'Bubble Sort',
            'comb_sort': 'Comb Sort', 'shake_sort': 'Shake Sort', 'improved_quick_sort': 'Improved Quick Sort',
-           'heap_sort': 'Heap Sort', 'merge_insertion_sort': 'Merge Insetion Sort'}
+           'heap_sort': 'Heap Sort'}
     return dic[sort_id]
 
 
@@ -31,7 +31,7 @@ def get_sort_function(sort_id: str) -> function:
            'insertion_sort': insertion_sort, 'binary_insertion_sort': binary_insertion_sort,
            'merge_sort': merge_sort, 'quick_sort': quick_sort, 'bubble_sort': bubble_sort,
            'comb_sort': comb_sort, 'shake_sort': shake_sort, 'improved_quick_sort': improved_quick_sort,
-           'heap_sort': heap_sort, 'merge_insertion_sort': merge_insertion_sort}
+           'heap_sort': heap_sort}
     return dic[sort_id]
 
 
@@ -240,7 +240,24 @@ def aux_merge_sort(arr: list, lo: int, hi: int, aux: list, compares: int, exchan
     return compares, exchanges
 
 
+def insertion_sort_aux(arr: list, lo: int, hi: int, compares: int, exchanges: int) -> (int, int):
+    for i in range(lo, hi + 1):
+        j = i
+
+        # exchange i element with the predecessor until find a smaller one
+        while j > lo and arr[j] < arr[j - 1]:
+            compares += 1  # sum compare
+            arr[j], arr[j - 1] = arr[j - 1], arr[j]
+            exchanges += 1
+            j -= 1
+
+    return compares, exchanges
+
+
 def merge(arr: list, lo: int, mid: int, hi: int, aux: list, compares: int, exchanges: int) -> (int, int):
+    if hi - lo < 15:
+        return insertion_sort_aux(arr, lo, hi, compares, exchanges)
+
     i = lo
     j = mid + 1
 
@@ -534,6 +551,17 @@ def is_sorted(arr: list) -> (int, bool):
     return -1, True
 
 
+# Test if two arrays have the same elements in any order
+def is_equal(sorted_arr: list, not_sorted_arr: list) -> bool:
+    for x in sorted_arr:
+        for yi in range(len(not_sorted_arr)):
+            if not_sorted_arr[yi] == x:
+                del not_sorted_arr[yi]
+                break
+
+    return len(not_sorted_arr) == 0
+
+
 # Verify if a list is in desc or asc partial order
 def is_partial_sorted(arr: list, init: int, end: int) -> (int, bool):
     # select the compare function by arr initial order
@@ -559,126 +587,3 @@ def smaller(val1: int, val2: int) -> bool:
 
 def bigger(val1: int, val2: int) -> bool:
     return val1 >= val2
-
-
-def merge_insertion_sort(arr: list) -> (list, int, int):
-    compares = exchanges = 0  # Start counters
-
-    last_item = len(arr) - 1
-
-    cut = 14
-    init = end = 0
-
-    while end != last_item:
-        end = min(init + cut, last_item)
-        compares, exchanges = insertion_sort_aux(arr, init, end, compares, exchanges)
-        init = end + 1
-
-    while cut < last_item:
-        init = 0
-        middle = init + cut + 1
-
-        while middle < last_item:
-            end = min(init + cut*2 + 1, last_item)
-            compares, exchanges = merge_insert_v2(arr, init, middle, end, compares, exchanges)
-
-            init = end + 1
-            middle = init + cut + 1
-
-        cut = cut*2 + 1
-
-    return arr, compares, exchanges
-
-
-def insertion_sort_aux(arr: list, lo: int, hi: int, compares: int, exchanges: int) -> (int, int):
-    for i in range(lo, hi + 1):
-        j = i
-
-        # exchange i element with the predecessor until find a smaller one
-        while j > lo and arr[j] < arr[j - 1]:
-            compares += 1  # sum compare
-            arr[j], arr[j - 1] = arr[j - 1], arr[j]
-            exchanges += 1
-            j -= 1
-
-    return  compares, exchanges
-
-
-def merge_insert_v1(arr: list, init_list_1: int, init_list_2: int, end_list_2: int, compares: int, exchanges: int) \
-        -> (list, int, int):
-
-    aux = []
-    counter_list_2 = init_list_2
-
-    while init_list_1 < init_list_2 and counter_list_2 <= end_list_2:
-        if arr[counter_list_2] < arr[init_list_1]:
-            aux.append(arr[counter_list_2])
-            counter_list_2 += 1
-        else:
-            aux.append(arr[init_list_1])
-            init_list_1 += 1
-
-        compares += 1
-        exchanges += 1
-
-    while init_list_1 < init_list_2:
-        aux.append(arr[init_list_1])
-        init_list_1 += 1
-        exchanges += 1
-
-    while counter_list_2 <= end_list_2:
-        aux.append(arr[counter_list_2])
-        counter_list_2 += 1
-        exchanges += 1
-
-    return aux, compares, exchanges
-
-
-def merge_insert_v2(arr: list, init_list_1: int, init_list_2: int, end_list_2: int, compares: int, exchanges: int) \
-        -> (int, int):
-
-    temp = init_list_1
-    aux = []
-    mid = init_list_2
-    print('init_1' + str(end_list_2))
-    while init_list_1 < init_list_2 <= end_list_2:
-        if len(aux) > 0:
-            if init_list_1 < mid:
-                aux.append(arr[init_list_1])
-
-            if arr[init_list_2] < aux[0]:  # < is necessary for stability
-                arr[init_list_1] = arr[init_list_2]
-                init_list_2 += 1
-            else:
-                arr[init_list_1] = aux[0]
-                del aux[0]
-
-            exchanges += 1
-
-        elif arr[init_list_2] < arr[init_list_1]:  # < is necessary for stability
-            aux.append(arr[init_list_1])
-            arr[init_list_1] = arr[init_list_2]
-            init_list_2 += 1
-
-            exchanges += 1
-
-        init_list_1 += 1
-        compares += 1
-
-    print(aux)
-    while len(aux) > 0:
-        arr[init_list_1] = aux[0]
-        del aux[0]
-        init_list_1 += 1
-        exchanges += 1
-
-    teste, sorted = is_partial_sorted(arr, temp, end_list_2)
-
-    print(temp)
-    print(end_list_2)
-    print(arr)
-    print(teste)
-    print(arr[teste])
-    assert sorted, 'fail'
-
-    return compares, exchanges

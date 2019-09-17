@@ -75,6 +75,7 @@ def test_sort(sort_function: function, sort_name: str, size: int, arr_type: str)
 
     st_time = util.get_time()  # get init time
 
+    test_arr = list(array)
     sorted_arr, t_compare, t_exchange = sort_function(array)  # sort array
 
     f_time = util.get_time() - st_time
@@ -83,6 +84,7 @@ def test_sort(sort_function: function, sort_name: str, size: int, arr_type: str)
 
     if not is_sorted:
         print(sorted_arr)
+        print(test_arr)
 
     assert is_sorted, 'failed with ' + sort_name + ' in index ' + str(index)
 
