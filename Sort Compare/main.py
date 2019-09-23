@@ -11,7 +11,7 @@ def main():
 
     arr_type = 'R'
 
-    sort_list = sort.get_sorts(['merge_sort', 'quick_sort'])
+    sort_list = sort.get_sorts(['heap_sort', 'merge_sort', 'quick_sort'])
 
     test.test_battery(repeat, size_min, size_max, jump, sort_list, arr_type)
 
