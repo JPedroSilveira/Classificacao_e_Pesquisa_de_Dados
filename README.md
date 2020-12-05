@@ -1,1 +1,1 @@
-INF01124-Classificacao-e-Pesquisa-de-Dados-2019-2-UFRGS
+Exercícios desenvolvidos durante a disciplina de Classificação e Pesquisa de Dados (INF-UFRGS)
