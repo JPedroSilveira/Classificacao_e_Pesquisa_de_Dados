@@ -1,1 +1,3 @@
-Exercícios desenvolvidos durante a disciplina de Classificação e Pesquisa de Dados (INF-UFRGS).
+# Classificação e Pesquisa de Dados
+### Semestre: 2019/2
+#### Professor: Leandro Krug Wives
